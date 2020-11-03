@@ -13,9 +13,13 @@ services:
       QT_X11_NO_MITSHM: 1
     network_mode: "host"
     volumes:
+
+      # CHANGE 'source' PATH IF YOU HAVE THE REPOSITORY 
+      # CLONED AT A DIFFERENT LOCATION THAN HOME
       - type: 'bind'
         source: /home/${USER}/pytorch_6dof-graspnet
         target: /home/graspnet_user/pytorch_6dof-graspnet
+      
       # - type: 'bind'
       #   source: /home/${USER}/Pointnet2_PyTorch
       #   target: /home/graspnet_user/Pointnet2_PyTorch
