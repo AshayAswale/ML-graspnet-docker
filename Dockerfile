@@ -11,19 +11,19 @@ RUN apt update && apt install -y python3-rtree wget python3-opencv freeglut3-dev
 
 # Creating the user (without the user, it will not work)
 RUN export uid=1000 gid=1000 && \
-  mkdir -p /home/ashay && \
-  echo "ashay:x:${uid}:${gid}:ashay,,,:/home/ashay:/bin/bash" >> /etc/passwd && \
-  echo "ashay:x:${uid}:" >> /etc/group && \
-  echo "ashay ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ashay && \
-  chmod 0440 /etc/sudoers.d/ashay && \
-  chown ${uid}:${gid} -R /home/ashay
-USER ashay
-WORKDIR /home/ashay
-ENV HOME /home/ashay
+  mkdir -p /home/graspnet_user && \
+  echo "graspnet_user:x:${uid}:${gid}:graspnet_user,,,:/home/graspnet_user:/bin/bash" >> /etc/passwd && \
+  echo "graspnet_user:x:${uid}:" >> /etc/group && \
+  echo "graspnet_user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/graspnet_user && \
+  chmod 0440 /etc/sudoers.d/graspnet_user && \
+  chown ${uid}:${gid} -R /home/graspnet_user
+USER graspnet_user
+WORKDIR /home/graspnet_user
+ENV HOME /home/graspnet_user
 
 # Downloading the git packages
-RUN cd $HOME && git clone https://github.com/jsll/pytorch_6dof-graspnet.git
 RUN cd $HOME && git clone https://github.com/erikwijmans/Pointnet2_PyTorch.git
+# RUN cd $HOME && git clone https://github.com/jsll/pytorch_6dof-graspnet.git
 
 # Installing pip packages
 # For some reason, demo.main will fail without sudo. Do not remove.

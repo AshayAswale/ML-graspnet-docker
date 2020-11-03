@@ -1,0 +1,24 @@
+version: '2.3'
+services:
+  dev:
+    privileged: true
+    runtime: nvidia
+    build: .
+    image: graspnet_docker
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+      DISPLAY: ${DISPLAY}
+      XAUTHORITY: /tmp/.docker.xauth
+      QT_X11_NO_MITSHM: 1
+    network_mode: "host"
+    volumes:
+      - type: 'bind'
+        source: /home/${USER}/pytorch_6dof-graspnet
+        target: /home/graspnet_user/pytorch_6dof-graspnet
+      # - type: 'bind'
+      #   source: /home/${USER}/Pointnet2_PyTorch
+      #   target: /home/graspnet_user/Pointnet2_PyTorch
+        
+    entrypoint: ["/bin/sleep", "infinity"]
+
