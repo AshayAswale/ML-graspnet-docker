@@ -59,7 +59,10 @@
 8. Download the graspnet repository. 
 
     ```bash
-    ## Cloning simulation repository.
+    ## Cloning docker repository.
+    cd && git clone https://github.com/AshayAswale/ML-graspnet-docker.git
+    
+    ## Cloning graspnet repository
     cd && git clone https://github.com/jsll/pytorch_6dof-graspnet.git
     ```
     
